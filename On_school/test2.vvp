@@ -1,0 +1,83 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x56840a5e25c0 .scope module, "tb" "tb" 2 3;
+ .timescale -12 -12;
+v0x56840a6094a0_0 .var "in", 2 0;
+v0x56840a609560_0 .net "out", 1 0, L_0x56840a609b00;  1 drivers
+S_0x56840a5b7490 .scope module, "uut" "simu2" 2 8, 3 1 0, S_0x56840a5e25c0;
+ .timescale -12 -12;
+    .port_info 0 /INPUT 3 "in";
+    .port_info 1 /OUTPUT 2 "out";
+L_0x56840a6097a0 .functor AND 1, L_0x56840a609630, L_0x56840a609700, C4<1>, C4<1>;
+L_0x56840a609980 .functor NOT 1, L_0x56840a6098e0, C4<0>, C4<0>, C4<0>;
+L_0x56840a6099f0 .functor OR 1, L_0x56840a6097a0, L_0x56840a609980, C4<0>, C4<0>;
+L_0x56840a609d10 .functor NOT 1, L_0x56840a609c70, C4<0>, C4<0>, C4<0>;
+v0x56840a5b7670_0 .net *"_ivl_1", 0 0, L_0x56840a609630;  1 drivers
+v0x56840a608c50_0 .net *"_ivl_10", 0 0, L_0x56840a609980;  1 drivers
+v0x56840a608d30_0 .net *"_ivl_12", 0 0, L_0x56840a6099f0;  1 drivers
+v0x56840a608df0_0 .net *"_ivl_18", 0 0, L_0x56840a609c70;  1 drivers
+v0x56840a608ed0_0 .net *"_ivl_19", 0 0, L_0x56840a609d10;  1 drivers
+v0x56840a609000_0 .net *"_ivl_3", 0 0, L_0x56840a609700;  1 drivers
+v0x56840a6090e0_0 .net *"_ivl_9", 0 0, L_0x56840a6098e0;  1 drivers
+v0x56840a6091c0_0 .net "in", 2 0, v0x56840a6094a0_0;  1 drivers
+v0x56840a6092a0_0 .net "out", 1 0, L_0x56840a609b00;  alias, 1 drivers
+v0x56840a609380_0 .net "w1", 0 0, L_0x56840a6097a0;  1 drivers
+L_0x56840a609630 .part v0x56840a6094a0_0, 0, 1;
+L_0x56840a609700 .part v0x56840a6094a0_0, 1, 1;
+L_0x56840a6098e0 .part v0x56840a6094a0_0, 2, 1;
+L_0x56840a609b00 .concat8 [ 1 1 0 0], L_0x56840a6099f0, L_0x56840a609d10;
+L_0x56840a609c70 .part v0x56840a6094a0_0, 2, 1;
+    .scope S_0x56840a5e25c0;
+T_0 ;
+    %vpi_call 2 16 "$dumpfile", "simu2.vcd" {0 0 0};
+    %vpi_call 2 17 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x56840a5e25c0 {0 0 0};
+    %vpi_call 2 19 "$display", "================TEST_CASE==================" {0 0 0};
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 21 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %pushi/vec4 1, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 24 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %pushi/vec4 2, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 27 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %pushi/vec4 3, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 30 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %pushi/vec4 4, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 33 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %pushi/vec4 5, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 36 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %pushi/vec4 6, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 39 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %pushi/vec4 7, 0, 3;
+    %store/vec4 v0x56840a6094a0_0, 0, 3;
+    %delay 10, 0;
+    %vpi_call 2 42 "$display", "in = %b, out = %b", v0x56840a6094a0_0, v0x56840a609560_0 {0 0 0};
+    %vpi_call 2 44 "$display", "================END_TEST====================" {0 0 0};
+    %vpi_call 2 46 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_simu2.v";
+    "simu2.v";
