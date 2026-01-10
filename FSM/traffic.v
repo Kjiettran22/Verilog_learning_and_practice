@@ -1,20 +1,20 @@
 module traffic (
-    input clk,rst_n,push1,push2
-    output cnt,
-    output n_left_green,
-    output s_left_green,
-    output e_left_green,
-    output w_left_green,
-    output n_left_red,
-    output s_left_red,
-    output e_left_red,
-    output w_left_red,
-    output ns_yellow;
-    output ew_yellow;
-    output ns_green,
-    output ew_green,
-    output ns_red,
-    output ew_red
+    input clk,rst_n,push1,push2,
+    output reg [7:0] cnt,
+    output reg n_left_green,
+    output reg s_left_green,
+    output reg e_left_green,
+    output reg w_left_green,
+    output reg n_left_red,
+    output reg s_left_red,
+    output reg e_left_red,
+    output reg w_left_red,
+    output reg ns_yellow,
+    output reg ew_yellow,
+    output reg ns_green,
+    output reg ew_green,
+    output reg ns_red,
+    output reg ew_red
 );
     localparam S_INIT = 8'd0;
     localparam S_DELAY = 8'd1;
@@ -28,14 +28,13 @@ module traffic (
     localparam S7_EW_YELLOW = 8'd9;
     reg [7:0] state,next_state,state_delay;
 
-    localparam T_LEFT;
-    localparam T_GO;
-    localparam T_YELLOW;
+    reg [7:0] T_LEFT,T_GO,T_YELLOW;
     localparam T_DELAY = 8'd30;
     
     //timer
-    wire load;
+    reg load;
     reg [7:0] time_value;
+    wire done;
     always @(posedge clk) begin
         if (!rst_n) begin
             cnt <= 0;
@@ -49,8 +48,10 @@ module traffic (
 
     always @(posedge clk) begin
         if (!rst_n) begin
-            push1 = 0;
-        end else begin
+                T_LEFT = 8'd15;
+                T_GO = 8'd25;
+                T_YELLOW = 8'd5;
+            end else begin
             case (push1)
                 2'b00: begin
                     T_LEFT = 8'd15;
@@ -76,9 +77,7 @@ module traffic (
         end
     end
     always @(posedge clk) begin
-        if (!rst_n) begin
-            push2 = 0;
-        end else if (push2) begin
+        if (push2) begin
             case (state)
                 S0_N_LEFT: begin
                     if (done) begin
@@ -154,7 +153,7 @@ module traffic (
         end else begin
             n_left_green = 0; s_left_green = 0; e_left_green = 0; w_left_green = 0;
             n_left_red = 0; s_left_red = 0; ns_yellow =1; ew_yellow = 1; 
-            case (state):
+            case (state)
                 S_INIT: begin
                    next_state = S0_N_LEFT; 
                 end

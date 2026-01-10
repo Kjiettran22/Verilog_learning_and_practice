@@ -1,0 +1,60 @@
+module tb;
+    reg clk,rst_n,push1,push2;
+    wire [7:0] cnt;
+    wire n_left_green;
+    wire s_left_green;
+    wire e_left_green;
+    wire w_left_green;
+    wire n_left_red;
+    wire s_left_red;
+    wire e_left_red;
+    wire w_left_red;
+    wire ns_yellow;
+    wire ns_green;
+    wire ns_red;
+    wire ew_yellow;
+    wire ew_green;
+    wire ew_red;
+
+    traffic dut (
+        .clk(clk),
+        .rst_n(rst_n),
+        .push1(push1),
+        .push2(push2),
+        .cnt(cnt),
+        .n_left_green(n_left_green),
+        .s_left_green(s_left_green),
+        .e_left_green(e_left_green),
+        .w_left_green(w_left_green),
+        .n_left_red(n_left_red),
+        .s_left_red(s_left_red),
+        .e_left_red(e_left_red),
+        .w_left_red(w_left_red),
+        .ns_green(ns_green),
+        .ns_red(ns_red),
+        .ns_yellow(ns_yellow),
+        .ew_green(ew_green),
+        .ew_yellow(ew_yellow),
+        .ew_red(ew_red)
+    );
+    always #5 clk = ~clk;
+    initial begin
+        $dumpfile("traffic.vcd");
+        $dumpvars(0,tb);
+        clk = 0 ;
+        rst_n = 1;
+        push1 = 2'b00;
+
+        #10;
+        rst_n = 0;
+
+        #1000;
+        push1 = 2'b01;
+         
+        #1000;
+        push1 = 2'b10;
+
+        #1000
+        $finish;
+    end
+endmodule
